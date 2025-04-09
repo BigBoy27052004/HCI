@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ProductivityPro | Your Personal Productivity Companion</title>
+    <style>
+      :root {
+        --primary-color: #6c63ff;
+        --secondary-color: #4d44db;
+        --accent-color: #ff6584;
+        --light-gray: #f5f5f7;
+        --dark-gray: #333333;
+        --text-color: #444;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: var(--text-color);
+        background-color: white;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* Header */
+      header {
+        background-color: white;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        position: fixed;
+        width: 100%;
+        z-index: 100;
+      }
+
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 0;
+      }
+
+      .logo {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: var(--primary-color);
+        text-decoration: none;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 30px;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: var(--dark-gray);
+        font-weight: 500;
+        transition: color 0.3s;
+      }
+
+      .nav-links a:hover {
+        color: var(--primary-color);
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 10px 25px;
+        border-radius: 5px;
+        font-weight: 500;
+        text-decoration: none;
+        transition: all 0.3s;
+      }
+
+      .btn-primary {
+        background-color: var(--primary-color);
+        color: white;
+      }
+
+      .btn-primary:hover {
+        background-color: var(--secondary-color);
+        transform: translateY(-2px);
+      }
+
+      .btn-outline {
+        border: 2px solid var(--primary-color);
+        color: var(--primary-color);
+      }
+
+      .btn-outline:hover {
+        background-color: var(--primary-color);
+        color: white;
+        transform: translateY(-2px);
+      }
+
+      /* Hero Section */
+      .hero {
+        padding: 150px 0 100px;
+        background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+      }
+
+      .hero-content {
+        display: flex;
+        align-items: center;
+        gap: 50px;
+      }
+
+      .hero-text {
+        flex: 1;
+      }
+
+      .hero-image {
+        flex: 1;
+      }
+
+      .hero-image img {
+        width: 100%;
+        max-width: 500px;
+        border-radius: 10px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        font-size: 3rem;
+        margin-bottom: 20px;
+        color: var(--dark-gray);
+        line-height: 1.2;
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+        max-width: 600px;
+      }
+
+      .cta-buttons {
+        display: flex;
+        gap: 20px;
+      }
+
+      /* Features Section */
+      .features {
+        padding: 100px 0;
+      }
+
+      .section-title {
+        text-align: center;
+        margin-bottom: 60px;
+      }
+
+      .section-title h2 {
+        font-size: 2.5rem;
+        color: var(--dark-gray);
+        margin-bottom: 15px;
+      }
+
+      .section-title p {
+        font-size: 1.1rem;
+        max-width: 700px;
+        margin: 0 auto;
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+      }
+
+      .feature-card {
+        background-color: white;
+        border-radius: 10px;
+        padding: 30px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .feature-icon {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        color: var(--primary-color);
+      }
+
+      .feature-card h3 {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+        color: var(--dark-gray);
+      }
+
+      /* Testimonials */
+      .testimonials {
+        padding: 100px 0;
+        background-color: var(--light-gray);
+      }
+
+      .testimonial-card {
+        background-color: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .testimonial-text {
+        font-size: 1.2rem;
+        font-style: italic;
+        margin-bottom: 20px;
+      }
+
+      .testimonial-author {
+        font-weight: bold;
+      }
+
+      /* CTA Section */
+      .cta {
+        padding: 100px 0;
+        text-align: center;
+        background: linear-gradient(
+          135deg,
+          var(--primary-color) 0%,
+          var(--secondary-color) 100%
+        );
+        color: white;
+      }
+
+      .cta h2 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+      }
+
+      .cta p {
+        font-size: 1.2rem;
+        max-width: 700px;
+        margin: 0 auto 30px;
+      }
+
+      /* Footer */
+      footer {
+        background-color: var(--dark-gray);
+        color: white;
+        padding: 50px 0 20px;
+      }
+
+      .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 40px;
+        margin-bottom: 40px;
+      }
+
+      .footer-column h3 {
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+        color: #fff;
+      }
+
+      .footer-column ul {
+        list-style: none;
+      }
+
+      .footer-column ul li {
+        margin-bottom: 10px;
+      }
+
+      .footer-column a {
+        color: #ccc;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      .footer-column a:hover {
+        color: white;
+      }
+
+      .copyright {
+        text-align: center;
+        padding-top: 20px;
+        border-top: 1px solid #444;
+        color: #aaa;
+        font-size: 0.9rem;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .hero-content {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .hero-text {
+          margin-bottom: 40px;
+        }
+
+        .cta-buttons {
+          justify-content: center;
+        }
+
+        h1 {
+          font-size: 2.5rem;
+        }
+
+        .section-title h2 {
+          font-size: 2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <div class="container">
+        <nav>
+          <a href="#" class="logo">ProductivityPro</a>
+          <div class="nav-links">
+            <a href="#features">Features</a>
+            <a href="#testimonials">Testimonials</a>
+            <a href="login.html" class="btn btn-outline">Login</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-text">
+            <h1>Organize Your Work, Enhance Your Productivity</h1>
+            <p>
+              ProductivityPro helps you manage tasks, track your mood, and stay
+              focused with intelligent reminders and scheduling.
+            </p>
+            <div class="cta-buttons">
+              <a href="signup.html" class="btn btn-primary">Get Started</a>
+              <a href="#features" class="btn btn-outline">Learn More</a>
+            </div>
+          </div>
+          <div class="hero-image">
+            <img
+              src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+              alt="Productivity Dashboard"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+      <div class="container">
+        <div class="section-title">
+          <h2>Powerful Features</h2>
+          <p>
+            Everything you need to stay productive and balanced in one intuitive
+            platform
+          </p>
+        </div>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">📝</div>
+            <h3>Task Management</h3>
+            <p>
+              Easily create, organize, and prioritize your tasks with our
+              intuitive interface.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">⏱️</div>
+            <h3>Smart Scheduling</h3>
+            <p>
+              Let our system automatically schedule study time based on your
+              priorities.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">😊</div>
+            <h3>Mood Tracking</h3>
+            <p>
+              Track your emotional well-being and identify patterns in your
+              productivity.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🔔</div>
+            <h3>Intelligent Reminders</h3>
+            <p>
+              Get notified when it's time to take breaks or switch tasks for
+              optimal focus.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">📊</div>
+            <h3>Progress Insights</h3>
+            <p>
+              Visualize your productivity trends and accomplishments over time.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">📓</div>
+            <h3>Journaling</h3>
+            <p>
+              Reflect on your day and document your thoughts in a private
+              journal.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials" id="testimonials">
+      <div class="container">
+        <div class="section-title">
+          <h2>What Our Users Say</h2>
+          <p>
+            Join thousands of students and professionals who have transformed
+            their productivity
+          </p>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-text">
+            "ProductivityPro has completely changed how I manage my coursework.
+            The auto-scheduling feature saves me hours each week!"
+          </p>
+          <p class="testimonial-author">- Zanele M., University Student</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+      <div class="container">
+        <h2>Ready to Boost Your Productivity?</h2>
+        <p>
+          Join ProductivityPro today and take control of your time and tasks
+        </p>
+        <a
+          href="signup.html"
+          class="btn btn-outline"
+          style="background-color: white; color: var(--primary-color)"
+          >Sign Up Now</a
+        >
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-column">
+            <h3>ProductivityPro</h3>
+            <p>
+              Your personal productivity companion for academic and professional
+              success.
+            </p>
+          </div>
+          <div class="footer-column">
+            <h3>Features</h3>
+            <ul>
+              <li><a href="#">Task Management</a></li>
+              <li><a href="#">Smart Scheduling</a></li>
+              <li><a href="#">Mood Tracking</a></li>
+              <li><a href="#">Journaling</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h3>Company</h3>
+            <ul>
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Careers</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Terms of Service</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h3>Support</h3>
+            <ul>
+              <li><a href="#">Help Center</a></li>
+              <li><a href="#">Contact Us</a></li>
+              <li><a href="#">Feedback</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="copyright">
+          &copy; 2023 ProductivityPro. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
